@@ -9,20 +9,26 @@ public class Phyllotaxis : MonoBehaviour {
 	public float c;
 	public int n;
 
+	public Camera cam;
+	public bool moveIn3D;
+	Vector3 camCurrentPos;
+	float offset = 1;
+
 	void Start()
 	{
 		n = 0;
 	}
 	void Update()
 	{
-		
-//		dotGO.transform.position.z = 0;
-//		if(Input.GetKey(KeyCode.Space))
-//		{
-			GameObject dotGO = Instantiate (dot, this.transform) as GameObject;
-			dotGO.transform.position = CalculatePosition (angle, n, c);
-			n += 1;
-//		}
+		GameObject dotGO = Instantiate (dot, this.transform) as GameObject;
+		dotGO.transform.position = CalculatePosition (angle, n, c);
+		n += 1;
+
+		if(moveIn3D)
+		{
+			camCurrentPos = cam.transform.position;
+			cam.transform.position = new Vector3 (camCurrentPos.x, camCurrentPos.y, camCurrentPos.z + offset * Time.deltaTime);
+		}
 	}
 
 	Vector3 CalculatePosition(float _angle, int _number, float _scale)
@@ -31,8 +37,8 @@ public class Phyllotaxis : MonoBehaviour {
 		float _angleInRadians = _number * Mathf.Deg2Rad * _angle;
 		float _x = _radius * Mathf.Cos (_angleInRadians);
 		float _y = _radius * Mathf.Sin (_angleInRadians);
-
-		return new Vector3 (_x,_y,_number*0.1f);
+		float _z = moveIn3D ? _number * 0.1f : 0;
+		return new Vector3 (_x,_y,_number * 0.1f);
 
 	}
 
