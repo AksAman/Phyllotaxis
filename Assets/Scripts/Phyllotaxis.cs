@@ -27,7 +27,7 @@ public class Phyllotaxis : MonoBehaviour {
 		if(moveIn3D)
 		{
 			camCurrentPos = cam.transform.position;
-			cam.transform.position = new Vector3 (camCurrentPos.x, camCurrentPos.y, camCurrentPos.z + offset * Time.deltaTime);
+			cam.transform.position = new Vector3 (camCurrentPos.x, camCurrentPos.y, camCurrentPos.z + (offset * Time.deltaTime));
 		}
 	}
 
@@ -38,8 +38,7 @@ public class Phyllotaxis : MonoBehaviour {
 		float _x = _radius * Mathf.Cos (_angleInRadians);
 		float _y = _radius * Mathf.Sin (_angleInRadians);
 		float _z = moveIn3D ? _number * 0.1f : 0;
-		return new Vector3 (_x,_y,_number * 0.1f);
-
+		return new Vector3 (_x, _y, _number * 0.1f);
 	}
 
 }
