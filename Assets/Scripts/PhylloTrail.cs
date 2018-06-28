@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PhylloTrail : MonoBehaviour {
 
+	// Basic Variables
 	private TrailRenderer trailRenderer;
 	public float angle, scale;
 	public int startNumber;
@@ -16,26 +17,72 @@ public class PhylloTrail : MonoBehaviour {
 	private int currentIteration;
 	public float percentageComplete;
 
+	// Lerping
 	public bool useLerping;
 	private bool isLerping;
-	public float lerpInterval;
 	private Vector3 startPos, endPos;
-	float timeStartedlerping, timeSinceLerping;
+	public AnimationCurve lerpSpeedCurve;
+	public Vector2 lerpPosMinMaxSpeed;
+	public float lerpPosTimer, lerpPosSpeed;
+	public int lerpBand;
+
+	// Audio
+	public Visualizer visual;
+	public Color trailColor;
+	private Material trailMat;
+
 
 	public bool moveIn3D;
 
 	void Awake()
 	{
 		trailRenderer = GetComponent<TrailRenderer> ();
+//		trailMat = new Material (trailRenderer.material);
+//		trailMat.SetColor ("_TintColor", trailColor);
+//		trailRenderer.material = trailMat;
+
 		currentnumber = startNumber;
 		transform.localPosition = CalculatePosition (angle, currentnumber, scale);
 		if (useLerping)
 		{
+			isLerping = true;
 			StartLerping ();
 		}
 	}
 
-	void FixedUpdate()
+	void Update()
+	{
+		if(useLerping)
+		{
+			if(isLerping)
+			{
+				float audioValue = visual.audioBandBuffer [lerpBand] * 1000;
+				audioValue = Mathf.Clamp01(audioValue);
+				Debug.Log ("On Anim curve : " + lerpSpeedCurve.Evaluate (audioValue));
+				lerpPosSpeed = Mathf.Lerp (lerpPosMinMaxSpeed.x, lerpPosMinMaxSpeed.y, lerpSpeedCurve.Evaluate (audioValue));
+				lerpPosTimer += Time.deltaTime * lerpPosSpeed;
+
+				transform.localPosition = Vector3.Lerp (startPos, endPos, Mathf.Clamp01(lerpPosTimer));
+				Debug.Log (lerpPosTimer);
+				if(lerpPosTimer >= 1)
+				{
+					lerpPosTimer -= 1;
+					currentnumber += stepSize;
+					currentIteration++;
+					StartLerping ();
+				}
+			}
+		}
+
+		if(!useLerping)
+		{
+			transform.localPosition = CalculatePosition (angle, currentnumber, scale);
+			currentnumber += stepSize;
+			currentIteration++;
+		}
+	}
+
+	/* void FixedUpdate()
 	{
 		if (useLerping) 
 		{
@@ -61,14 +108,14 @@ public class PhylloTrail : MonoBehaviour {
 					}
 				}
 			}
-		} 
+		}
 
 		else
 		{
 			transform.localPosition = CalculatePosition (angle, currentnumber, scale);
 			currentnumber += stepSize;
 		}
-	}
+	}*/
 
 	Vector2 CalculatePosition(float _angle, int _number, float _scale)
 	{
@@ -81,10 +128,8 @@ public class PhylloTrail : MonoBehaviour {
 
 	void StartLerping()
 	{
-		isLerping = true;
 		startPos = transform.position;
 		phylloPosition = CalculatePosition (angle, currentnumber, scale);
-		endPos = new Vector3 (phylloPosition.x, phylloPosition.y, currentnumber*0.1f);
-		timeStartedlerping = Time.time;
+		endPos = new Vector3 (phylloPosition.x, phylloPosition.y, currentnumber);
 	}
 }

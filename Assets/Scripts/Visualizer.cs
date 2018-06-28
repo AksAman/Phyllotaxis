@@ -25,7 +25,7 @@ public class Visualizer : MonoBehaviour {
 	public float[] audioBand,audioBandBuffer;
 
 	// Final amplitudes
-	[HideInInspector]
+//	[HideInInspector]
 	public float amplitude, amplitudeBuffer;
 	private float amplitudeHighest;
 

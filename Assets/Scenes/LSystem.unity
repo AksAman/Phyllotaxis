@@ -291,8 +291,8 @@ MonoBehaviour:
   ruleIn: F
   ruleOut: FF-[-F+F+F]+[+F-F-F]
   angle: 22.5
-  generations: 3
-  distance: 2
+  generations: 2
+  distance: 0.1
 --- !u!4 &324487770
 Transform:
   m_ObjectHideFlags: 0
