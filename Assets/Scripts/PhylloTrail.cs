@@ -78,7 +78,7 @@ public class PhylloTrail : MonoBehaviour {
 		float _y = _radius * Mathf.Sin (_angleInRadians);
 		return new Vector2 (_x, _y);
 	}
-		
+
 	void StartLerping()
 	{
 		isLerping = true;
