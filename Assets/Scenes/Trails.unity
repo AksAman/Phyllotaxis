@@ -166,7 +166,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 500
+  m_Time: 0.5
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.4
@@ -174,8 +174,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.82291985
+        time: 0.012741089
+        value: 0.7500038
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -184,7 +184,7 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0.82291985
+        value: 0.38541538
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -196,8 +196,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.96039605, b: 0, a: 1}
-      key1: {r: 1, g: 0, b: 0.16326523, a: 0.7647059}
+      key0: {r: 1, g: 0, b: 0, a: 1}
+      key1: {r: 0.1323185, g: 0, b: 1, a: 1}
       key2: {r: 1, g: 0.86978406, b: 0, a: 1}
       key3: {r: 0.34096003, g: 0, b: 1, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -205,7 +205,7 @@ TrailRenderer:
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 24399
+      ctime1: 33473
       ctime2: 49151
       ctime3: 65535
       ctime4: 0
@@ -213,7 +213,7 @@ TrailRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 32768
+      atime1: 65535
       atime2: 65535
       atime3: 0
       atime4: 0
@@ -221,8 +221,8 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_NumColorKeys: 4
-      m_NumAlphaKeys: 3
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
@@ -241,7 +241,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &34811444
 MonoBehaviour:
@@ -254,12 +254,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982f5a998f3ab7940ba8fa7c161c2d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: 53
-  scale: 0.3
-  startNumber: 2000
-  stepSize: 1
-  maxIterations: 1000
-  percentageComplete: 0
+  angle: 90
+  scale: 0.1
+  startNumber: 10000
+  stepSize: 4
+  zOffset: 0
+  zSmallOffset: 0.1
+  maxIterations: 2000
+  visual: {fileID: 844432454}
   useLerping: 1
   lerpSpeedCurve:
     serializedVersion: 2
@@ -286,12 +288,42 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   lerpPosMinMaxSpeed: {x: 0, y: 40}
-  lerpPosTimer: 0
-  lerpPosSpeed: 0
   lerpBand: 0
-  visual: {fileID: 844432454}
   trailColor: {r: 0.20473109, g: 0.13679248, b: 1, a: 0}
-  moveIn3D: 1
+  repeat: 1
+  invert: 0
+  useScaling: 1
+  useScaleAnimCurve: 1
+  scaleMinMax: {x: 0.1, y: 0.2}
+  scaleBand: 0
+  scaleAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  scaleTimer: 0
+  currentScale: 0
+  scaleSpeed: 500
+  moveIn3D: 0
 --- !u!1 &133702627
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,8 +356,10 @@ MonoBehaviour:
   scale: 0.2
   startNumber: 0
   stepSize: 1
+  zOffset: 0
+  zSmallOffset: 0
   maxIterations: 1000
-  percentageComplete: 0
+  visual: {fileID: 844432454}
   useLerping: 1
   lerpSpeedCurve:
     serializedVersion: 2
@@ -352,11 +386,23 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   lerpPosMinMaxSpeed: {x: 0, y: 40}
-  lerpPosTimer: 0
-  lerpPosSpeed: 0
   lerpBand: 3
-  visual: {fileID: 844432454}
   trailColor: {r: 0.20473109, g: 0.13679248, b: 1, a: 0}
+  repeat: 0
+  invert: 0
+  useScaling: 0
+  useScaleAnimCurve: 0
+  scaleMinMax: {x: 0, y: 0}
+  scaleBand: 0
+  scaleAnimCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  scaleTimer: 0
+  currentScale: 0
+  scaleSpeed: 0
   moveIn3D: 0
 --- !u!96 &133702629
 TrailRenderer:
@@ -464,12 +510,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 133702627}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 1520185254}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &196438911
 GameObject:
@@ -664,12 +710,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982f5a998f3ab7940ba8fa7c161c2d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: -53
+  angle: 2
   scale: 0.2
   startNumber: 0
   stepSize: 1
+  zOffset: 0
+  zSmallOffset: 0
   maxIterations: 1000
-  percentageComplete: 0
+  visual: {fileID: 844432454}
   useLerping: 1
   lerpSpeedCurve:
     serializedVersion: 2
@@ -696,11 +744,23 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   lerpPosMinMaxSpeed: {x: 0, y: 40}
-  lerpPosTimer: 0
-  lerpPosSpeed: 0
   lerpBand: 1
-  visual: {fileID: 844432454}
   trailColor: {r: 0.20473109, g: 0.13679248, b: 1, a: 0}
+  repeat: 0
+  invert: 0
+  useScaling: 0
+  useScaleAnimCurve: 0
+  scaleMinMax: {x: 0, y: 0}
+  scaleBand: 0
+  scaleAnimCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  scaleTimer: 0
+  currentScale: 0
+  scaleSpeed: 0
   moveIn3D: 0
 --- !u!96 &258346870
 TrailRenderer:
@@ -808,12 +868,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 258346868}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1520185254}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &616744461
 GameObject:
@@ -847,8 +907,10 @@ MonoBehaviour:
   scale: 0.2
   startNumber: 0
   stepSize: 1
+  zOffset: 0
+  zSmallOffset: 0
   maxIterations: 1000
-  percentageComplete: 0
+  visual: {fileID: 844432454}
   useLerping: 1
   lerpSpeedCurve:
     serializedVersion: 2
@@ -875,11 +937,23 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   lerpPosMinMaxSpeed: {x: 0, y: 40}
-  lerpPosTimer: 0
-  lerpPosSpeed: 0
   lerpBand: 2
-  visual: {fileID: 844432454}
   trailColor: {r: 0.20473109, g: 0.13679248, b: 1, a: 0}
+  repeat: 0
+  invert: 0
+  useScaling: 0
+  useScaleAnimCurve: 0
+  scaleMinMax: {x: 0, y: 0}
+  scaleBand: 0
+  scaleAnimCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  scaleTimer: 0
+  currentScale: 0
+  scaleSpeed: 0
   moveIn3D: 0
 --- !u!96 &616744463
 TrailRenderer:
@@ -987,12 +1061,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 616744461}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 1520185254}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &769760109
 GameObject:
@@ -1200,7 +1274,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1034306659
 GameObject:
@@ -1234,8 +1308,10 @@ MonoBehaviour:
   scale: 0.2
   startNumber: 0
   stepSize: 1
+  zOffset: 0
+  zSmallOffset: 0
   maxIterations: 1000
-  percentageComplete: 0
+  visual: {fileID: 844432454}
   useLerping: 1
   lerpSpeedCurve:
     serializedVersion: 2
@@ -1262,11 +1338,23 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   lerpPosMinMaxSpeed: {x: 0, y: 40}
-  lerpPosTimer: 0
-  lerpPosSpeed: 0
   lerpBand: 2
-  visual: {fileID: 844432454}
   trailColor: {r: 0.20473109, g: 0.13679248, b: 1, a: 0}
+  repeat: 0
+  invert: 0
+  useScaling: 0
+  useScaleAnimCurve: 0
+  scaleMinMax: {x: 0, y: 0}
+  scaleBand: 0
+  scaleAnimCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  scaleTimer: 0
+  currentScale: 0
+  scaleSpeed: 0
   moveIn3D: 0
 --- !u!96 &1034306661
 TrailRenderer:
@@ -1374,12 +1462,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1034306659}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1520185254}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1107260268
 GameObject:
@@ -1413,8 +1501,10 @@ MonoBehaviour:
   scale: 0.2
   startNumber: 0
   stepSize: 1
+  zOffset: 0
+  zSmallOffset: 0
   maxIterations: 1000
-  percentageComplete: 0
+  visual: {fileID: 844432454}
   useLerping: 1
   lerpSpeedCurve:
     serializedVersion: 2
@@ -1441,11 +1531,23 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   lerpPosMinMaxSpeed: {x: 0, y: 40}
-  lerpPosTimer: 0
-  lerpPosSpeed: 0
   lerpBand: 1
-  visual: {fileID: 844432454}
   trailColor: {r: 0.20473109, g: 0.13679248, b: 1, a: 0}
+  repeat: 0
+  invert: 0
+  useScaling: 0
+  useScaleAnimCurve: 0
+  scaleMinMax: {x: 0, y: 0}
+  scaleBand: 0
+  scaleAnimCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  scaleTimer: 0
+  currentScale: 0
+  scaleSpeed: 0
   moveIn3D: 0
 --- !u!96 &1107260270
 TrailRenderer:
@@ -1553,12 +1655,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1107260268}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1520185254}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1236749945
 GameObject:
@@ -1592,8 +1694,10 @@ MonoBehaviour:
   scale: 0.2
   startNumber: 0
   stepSize: 1
+  zOffset: 0
+  zSmallOffset: 0
   maxIterations: 1000
-  percentageComplete: 0
+  visual: {fileID: 844432454}
   useLerping: 1
   lerpSpeedCurve:
     serializedVersion: 2
@@ -1620,11 +1724,23 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   lerpPosMinMaxSpeed: {x: 0, y: 40}
-  lerpPosTimer: 0
-  lerpPosSpeed: 0
   lerpBand: 3
-  visual: {fileID: 844432454}
   trailColor: {r: 0.20473109, g: 0.13679248, b: 1, a: 0}
+  repeat: 0
+  invert: 0
+  useScaling: 0
+  useScaleAnimCurve: 0
+  scaleMinMax: {x: 0, y: 0}
+  scaleBand: 0
+  scaleAnimCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  scaleTimer: 0
+  currentScale: 0
+  scaleSpeed: 0
   moveIn3D: 0
 --- !u!96 &1236749947
 TrailRenderer:
@@ -1732,10 +1848,44 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1236749945}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
+  m_Father: {fileID: 1520185254}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1520185253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1520185254}
+  m_Layer: 0
+  m_Name: Secondary Trails
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1520185254
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1520185253}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 258346871}
+  - {fileID: 1034306662}
+  - {fileID: 133702630}
+  - {fileID: 1236749948}
+  - {fileID: 616744464}
+  - {fileID: 1107260271}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
