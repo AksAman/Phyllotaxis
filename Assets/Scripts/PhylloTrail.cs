@@ -16,6 +16,11 @@ public class PhylloTrail : MonoBehaviour {
 	private Vector2 phylloPosition;
 	public int zOffset;
 	public float zSmallOffset;
+	public float amplitude;
+	private float offset;
+
+	//Current Trail Position
+	private Vector3 currentTrailPos;
 
 	// Iterations
 	public int maxIterations;
@@ -104,7 +109,9 @@ public class PhylloTrail : MonoBehaviour {
 				lerpPosSpeed = Mathf.Lerp (lerpPosMinMaxSpeed.x, lerpPosMinMaxSpeed.y, lerpSpeedCurve.Evaluate (audioValue));
 				lerpPosTimer += Time.deltaTime * lerpPosSpeed;
 
-				transform.localPosition = Vector3.Lerp (startPos, endPos, Mathf.Clamp01(lerpPosTimer));
+				currentTrailPos = Vector3.Lerp (startPos, endPos, Mathf.Clamp01(lerpPosTimer));
+				transform.localPosition = currentTrailPos;
+
 				if(lerpPosTimer >= 1)
 				{
 					lerpPosTimer -= 1;
@@ -167,6 +174,9 @@ public class PhylloTrail : MonoBehaviour {
 		float _angleInRadians = _number * Mathf.Deg2Rad * _angle;
 		float _x = _radius * Mathf.Cos (_angleInRadians);
 		float _y = _radius * Mathf.Sin (_angleInRadians);
+		offset = amplitude * Mathf.Sin (Time.time);
+//		_x += offset;
+//		_y += offset;
 		return new Vector2 (_x, _y);
 	}
 
@@ -178,4 +188,9 @@ public class PhylloTrail : MonoBehaviour {
 		float _z = moveIn3D ? zOffset * zSmallOffset: 0;
 		endPos = new Vector3 (phylloPosition.x, phylloPosition.y, _z);
 	}
+
+//	public Vector3 ReturnCurrentCenter()
+//	{
+//		
+//	}
 }

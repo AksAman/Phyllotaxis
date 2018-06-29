@@ -166,7 +166,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.5
+  m_Time: 500
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.4
@@ -236,12 +236,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 34811441}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1314532911}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &34811444
 MonoBehaviour:
@@ -254,12 +254,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982f5a998f3ab7940ba8fa7c161c2d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: 90
+  angle: 20
   scale: 0.1
   startNumber: 10000
-  stepSize: 4
+  stepSize: 1
   zOffset: 0
   zSmallOffset: 0.1
+  amplitude: 5
   maxIterations: 2000
   visual: {fileID: 844432454}
   useLerping: 1
@@ -292,8 +293,8 @@ MonoBehaviour:
   trailColor: {r: 0.20473109, g: 0.13679248, b: 1, a: 0}
   repeat: 1
   invert: 0
-  useScaling: 1
-  useScaleAnimCurve: 1
+  useScaling: 0
+  useScaleAnimCurve: 0
   scaleMinMax: {x: 0.1, y: 0.2}
   scaleBand: 0
   scaleAnimCurve:
@@ -323,7 +324,7 @@ MonoBehaviour:
   scaleTimer: 0
   currentScale: 0
   scaleSpeed: 500
-  moveIn3D: 0
+  moveIn3D: 1
 --- !u!1 &133702627
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,6 +359,7 @@ MonoBehaviour:
   stepSize: 1
   zOffset: 0
   zSmallOffset: 0
+  amplitude: 0
   maxIterations: 1000
   visual: {fileID: 844432454}
   useLerping: 1
@@ -559,6 +561,7 @@ MonoBehaviour:
   angle: 2
   visual: {fileID: 844432454}
   trailGO: {fileID: 34811443}
+  pathOffsetGO: {fileID: 1314532911}
   offset: 50
 --- !u!20 &196438914
 Camera:
@@ -716,6 +719,7 @@ MonoBehaviour:
   stepSize: 1
   zOffset: 0
   zSmallOffset: 0
+  amplitude: 0
   maxIterations: 1000
   visual: {fileID: 844432454}
   useLerping: 1
@@ -909,6 +913,7 @@ MonoBehaviour:
   stepSize: 1
   zOffset: 0
   zSmallOffset: 0
+  amplitude: 0
   maxIterations: 1000
   visual: {fileID: 844432454}
   useLerping: 1
@@ -1310,6 +1315,7 @@ MonoBehaviour:
   stepSize: 1
   zOffset: 0
   zSmallOffset: 0
+  amplitude: 0
   maxIterations: 1000
   visual: {fileID: 844432454}
   useLerping: 1
@@ -1503,6 +1509,7 @@ MonoBehaviour:
   stepSize: 1
   zOffset: 0
   zSmallOffset: 0
+  amplitude: 0
   maxIterations: 1000
   visual: {fileID: 844432454}
   useLerping: 1
@@ -1696,6 +1703,7 @@ MonoBehaviour:
   stepSize: 1
   zOffset: 0
   zSmallOffset: 0
+  amplitude: 0
   maxIterations: 1000
   visual: {fileID: 844432454}
   useLerping: 1
@@ -1855,6 +1863,61 @@ Transform:
   m_Father: {fileID: 1520185254}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1314532909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1314532911}
+  - component: {fileID: 1314532910}
+  - component: {fileID: 1314532912}
+  m_Layer: 0
+  m_Name: TrailParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1314532910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1314532909}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950a2b57fe7d61b4fb5d0e22cc3f593b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetGO: {fileID: 34811443}
+--- !u!4 &1314532911
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1314532909}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 34811443}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1314532912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1314532909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7b3fd17e19c2f4298366ece290c633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 5
 --- !u!1 &1520185253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,5 +1950,5 @@ Transform:
   - {fileID: 616744464}
   - {fileID: 1107260271}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
