@@ -37,9 +37,9 @@ public class PhylloTrail : MonoBehaviour {
 	void Awake()
 	{
 		trailRenderer = GetComponent<TrailRenderer> ();
-//		trailMat = new Material (trailRenderer.material);
+//		trailMat = new Material (trailRenderer.sharedMaterial);
 //		trailMat.SetColor ("_TintColor", trailColor);
-//		trailRenderer.material = trailMat;
+//		trailRenderer.sharedMaterial = trailMat;
 
 		currentnumber = startNumber;
 		transform.localPosition = CalculatePosition (angle, currentnumber, scale);
@@ -130,6 +130,7 @@ public class PhylloTrail : MonoBehaviour {
 	{
 		startPos = transform.position;
 		phylloPosition = CalculatePosition (angle, currentnumber, scale);
-		endPos = new Vector3 (phylloPosition.x, phylloPosition.y, currentnumber);
+		float _z = moveIn3D ? currentnumber : 0;
+		endPos = new Vector3 (phylloPosition.x, phylloPosition.y, _z);
 	}
 }
