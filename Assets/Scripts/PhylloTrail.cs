@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PhylloTrail : MonoBehaviour {
 
+
+	public GameObject testCube;
+
 	// Basic Variables
 	private TrailRenderer trailRenderer;
 
@@ -174,9 +177,11 @@ public class PhylloTrail : MonoBehaviour {
 		float _angleInRadians = _number * Mathf.Deg2Rad * _angle;
 		float _x = _radius * Mathf.Cos (_angleInRadians);
 		float _y = _radius * Mathf.Sin (_angleInRadians);
-		offset = amplitude * Mathf.Sin (Time.time);
-//		_x += offset;
-//		_y += offset;
+		float offsetX = amplitude * Mathf.Sin (Time.time);
+		float offsetY = amplitude * Mathf.Cos (Time.time);
+		_x += offsetX;
+		_y += offsetY;
+
 		return new Vector2 (_x, _y);
 	}
 
@@ -189,8 +194,8 @@ public class PhylloTrail : MonoBehaviour {
 		endPos = new Vector3 (phylloPosition.x, phylloPosition.y, _z);
 	}
 
-//	public Vector3 ReturnCurrentCenter()
-//	{
-//		
-//	}
+	public Vector3 ReturnCurrentCenter()
+	{
+		return currentTrailPos - new Vector3 (endPos.x, endPos.y, 0);
+	}
 }
